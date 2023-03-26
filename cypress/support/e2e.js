@@ -22,3 +22,4 @@ import './commands'
 
 //we are store here some extra plugins like xpath
 //it is the first file which Cypress investigates any imports and additional libraries(Plugins)
+require('@cypress/xpath')
