@@ -1,9 +1,11 @@
 // /// <reference types="Cypress"/>
 /// <reference types="@cypress/xpath"/>
 describe('Test Contact Us fornm via Automation Test Store',()=>{
-    it('Should be able to submit a saccessfull submission via contact us form',()=>{
+    it.only('Should be able to submit a saccessfull submission via contact us form',()=>{
         cy.visit('https://automationteststore.com/')
-        cy.get("a[href$='contact']").click();
+        cy.get("a[href$='contact']").click().then((clickedButton)=>{
+            console.log('Clicked Button Text' + clickedButton.text());
+        })
         cy.get('#ContactUsFrm_first_name').type('Joe')
         cy.get('#ContactUsFrm_email').type('joe_blogs123@gmail.com')
         cy.get('#ContactUsFrm_enquiry').type('Hello world')
