@@ -29,35 +29,44 @@ describe("Traversing DOM elements in Cypress", () => {
     });
    
   
-    it.only("last() to retrieve the last DOM element within elements", () => {
+    it("last() to retrieve the last DOM element within elements", () => {
       cy.get('.traversal-table > tbody > tr > td').last().should('contain','Scott')
     });
   
-    it("nextAll() to get all of the next sibling DOM elements within elements", () => {
+    it("nextAll() to get all of the next(sonraki kardesleri) sibling DOM elements within elements", () => {
+      cy.get('#tea').nextAll().should('have.length',3)
     });
   
     it("nextUntil() to get all of the next sibling DOM elements within elements until another element", () => {
+      cy.get('#coffee').nextUntil('#espresso')
     });
   
     it("not() to remove DOM element(s) from the set of elements", () => {
+        cy.get('.traversal-button-states> button').not('.disabled').should('not.have.class','disabled')
     });
   
     it("parent() To get parent DOM element of elements", () => {
+      cy.get('.traversal-mark').parent().should('contain','Lorem ipsum dolor sit amet')
     });
   
     it("parents() to get parents DOM element of elements", () => {
+      cy.get('.traversal-cite').parents().should('match','blockquote')//but it gives all parents not only grandparent
     });
   
     it("prev() to get the previous sibling DOM element within elements", () => {
+      cy.get('#sugar').prev().should('have.id','espresso')
     });
   
     it("prevAll() to get all previous sibling DOM elements within elements", () => {
+      cy.get('.sales').prevAll().should('have.length', 2)
     });
   
     it("prevUntil() to get all previous sibling DOM elements within elements until other element", () => {
+      cy.get('#sugar').prevUntil('#coffee').should('have.length',3)
     });
   
-    it("siblings() To get all sibling DOM elements of elements", () => {
+    it.only("siblings() To get all sibling DOM elements of elements", () => {
+      cy.get('.traversal-button-other-states .active').siblings().should('have.length',3)
     });
 });
   
